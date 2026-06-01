@@ -17,7 +17,7 @@ function HomeContent() {
   const t = useTranslations('home');
 
   return (
-    <main className="container flex min-h-screen max-w-3xl flex-col items-center justify-center gap-6 text-center">
+    <section className="container flex min-h-[80vh] max-w-3xl flex-col items-center justify-center gap-6 text-center">
       <p className="text-eyebrow uppercase text-muted-foreground">
         {t('eyebrow')}
       </p>
@@ -37,6 +37,6 @@ function HomeContent() {
       <p className="rounded-md border border-accent px-4 py-2 text-small text-muted-foreground">
         {t('scaffoldNotice')}
       </p>
-    </main>
+    </section>
   );
 }

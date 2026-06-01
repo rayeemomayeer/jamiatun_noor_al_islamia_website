@@ -7,6 +7,8 @@ import {
 } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
+import { Footer } from '@/components/layout/Footer';
+import { Navbar } from '@/components/layout/Navbar';
 import { isLocale, LOCALE_DIRECTION, type Locale } from '@/constants/i18n';
 import { routing } from '@/i18n/routing';
 import { fontVariables } from '@/styles/fonts';
@@ -50,11 +52,23 @@ export default async function LocaleLayout({
   const messages = await getMessages();
   const dir = LOCALE_DIRECTION[locale as Locale];
 
+  const t = await getTranslations({ locale, namespace: 'a11y' });
+
   return (
     <html lang={locale} dir={dir} className={fontVariables}>
-      <body className="font-body antialiased">
+      <body className="flex min-h-screen flex-col font-body antialiased">
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <a
+            href="#main"
+            className="sr-only z-50 rounded-md bg-primary px-4 py-2 font-semibold text-primary-foreground focus:not-sr-only focus:absolute focus:start-4 focus:top-4"
+          >
+            {t('skipToContent')}
+          </a>
+          <Navbar />
+          <main id="main" className="flex-1">
+            {children}
+          </main>
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>

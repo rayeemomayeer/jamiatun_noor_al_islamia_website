@@ -62,7 +62,7 @@ export default async function PlaygroundPage({ params }: PageParams) {
   setRequestLocale(locale);
 
   return (
-    <main className="container space-y-16 py-16">
+    <div className="container space-y-16 py-16">
       <header className="space-y-2">
         <p className="text-eyebrow uppercase text-muted-foreground">
           BLUEPRINT §7 · Phase 2
@@ -309,7 +309,7 @@ export default async function PlaygroundPage({ params }: PageParams) {
           </Tabs>
         </div>
       </Section>
-    </main>
+    </div>
   );
 }
 
