@@ -1,42 +1,38 @@
-import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 
-import { Button } from '@/components/ui/button';
-import { Divider } from '@/components/shared/Divider';
+import type { Locale } from '@/constants/i18n';
+import { ActivitiesSection } from '@/components/sections/ActivitiesSection';
+import { AdmissionSection } from '@/components/sections/AdmissionSection';
+import { DepartmentsSection } from '@/components/sections/DepartmentsSection';
+import { DonateSection } from '@/components/sections/DonateSection';
+import { DownloadsSection } from '@/components/sections/DownloadsSection';
+import { FacultySection } from '@/components/sections/FacultySection';
+import { FinancialTransparency } from '@/components/sections/FinancialTransparency';
+import { GallerySection } from '@/components/sections/GallerySection';
+import { HeroSection } from '@/components/sections/HeroSection';
+import { PublicationsSection } from '@/components/sections/PublicationsSection';
+import { StatsSection } from '@/components/sections/StatsSection';
 
 type PageParams = { params: Promise<{ locale: string }> };
 
 export default async function HomePage({ params }: PageParams) {
   const { locale } = await params;
   setRequestLocale(locale);
-
-  return <HomeContent />;
-}
-
-function HomeContent() {
-  const t = useTranslations('home');
+  const l = locale as Locale;
 
   return (
-    <section className="container flex min-h-[80vh] max-w-3xl flex-col items-center justify-center gap-6 text-center">
-      <p className="text-eyebrow uppercase text-muted-foreground">
-        {t('eyebrow')}
-      </p>
-      <h1 className="font-display text-display font-bold leading-tight text-primary">
-        {t('title')}
-      </h1>
-      <p className="max-w-xl text-body-lg text-foreground">{t('subtitle')}</p>
-      <div className="mt-2 flex flex-wrap items-center justify-center gap-4">
-        <Button variant="primary" size="lg">
-          {t('ctaApply')}
-        </Button>
-        <Button variant="secondary" size="lg">
-          {t('ctaDepartments')}
-        </Button>
-      </div>
-      <Divider className="mt-6 w-full" />
-      <p className="rounded-md border border-accent px-4 py-2 text-small text-muted-foreground">
-        {t('scaffoldNotice')}
-      </p>
-    </section>
+    <>
+      <HeroSection />
+      <StatsSection locale={l} />
+      <DepartmentsSection locale={l} />
+      <FacultySection locale={l} />
+      <AdmissionSection />
+      <PublicationsSection locale={l} />
+      <GallerySection locale={l} />
+      <ActivitiesSection locale={l} />
+      <DownloadsSection locale={l} />
+      <DonateSection />
+      <FinancialTransparency locale={l} />
+    </>
   );
 }

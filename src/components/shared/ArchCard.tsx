@@ -4,28 +4,34 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 // Mihrab arch silhouette — straight sides rising to a rounded point.
-// preserveAspectRatio is implicit via mask-size:100% 100% (stretches to box).
-const ARCH_MASK =
+// Stretchable via mask-size:100% 100% (preserveAspectRatio none).
+export const ARCH_MASK =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120' preserveAspectRatio='none'%3E%3Cpath d='M0 120 L0 50 C0 22 22 0 50 0 C78 0 100 22 100 50 L100 120 Z' fill='black'/%3E%3C/svg%3E\")";
 
+export const archMaskStyle: React.CSSProperties = {
+  maskImage: ARCH_MASK,
+  WebkitMaskImage: ARCH_MASK,
+  maskSize: '100% 100%',
+  WebkitMaskSize: '100% 100%',
+  maskRepeat: 'no-repeat',
+  WebkitMaskRepeat: 'no-repeat',
+};
+
 interface ArchCardProps {
-  imageSrc: string;
-  imageAlt: string;
   title: string;
+  /** Optional image; when absent a tinted emerald placeholder is shown. */
+  imageSrc?: string;
+  imageAlt?: string;
   description?: string;
-  /** Action node (e.g. a download Button). */
   action?: React.ReactNode;
   className?: string;
 }
 
-/**
- * Mihrab-arch image card (BLUEPRINT §2.4, §6.1). Arch shape applied via a
- * stretchable SVG mask so it scales with any aspect ratio.
- */
+/** Mihrab-arch image card (BLUEPRINT §2.4, §6.1). */
 export function ArchCard({
+  title,
   imageSrc,
   imageAlt,
-  title,
   description,
   action,
   className,
@@ -36,22 +42,26 @@ export function ArchCard({
     >
       <div
         className="relative aspect-[3/4] w-full overflow-hidden"
-        style={{
-          maskImage: ARCH_MASK,
-          WebkitMaskImage: ARCH_MASK,
-          maskSize: '100% 100%',
-          WebkitMaskSize: '100% 100%',
-          maskRepeat: 'no-repeat',
-          WebkitMaskRepeat: 'no-repeat',
-        }}
+        style={archMaskStyle}
       >
-        <Image
-          src={imageSrc}
-          alt={imageAlt}
-          fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover"
-        />
+        {imageSrc ? (
+          <Image
+            src={imageSrc}
+            alt={imageAlt ?? title}
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover"
+          />
+        ) : (
+          <div
+            aria-hidden
+            className="flex h-full w-full items-end justify-center bg-gradient-to-b from-primary/85 to-primary-darkest p-4"
+          >
+            <span className="font-display text-h4 text-primary-foreground/40">
+              {title}
+            </span>
+          </div>
+        )}
       </div>
       <h3 className="font-display text-h3 font-semibold text-primary">
         {title}

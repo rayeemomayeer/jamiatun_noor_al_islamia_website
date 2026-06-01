@@ -11,6 +11,13 @@
     "closeMenu": "Close menu",
     "selectLanguage": "Select language"
   },
+  "common": {
+    "readMore": "Read more",
+    "viewAll": "View all",
+    "downloadSyllabus": "Download Full Syllabus",
+    "apply": "Apply Now",
+    "learnMore": "Learn more"
+  },
   "nav": {
     "home": "Home",
     "about": "About Us",
@@ -34,8 +41,62 @@
     "title": "Jamiatun Noor Al Islamia",
     "subtitle": "Nurturing scholars of the Qur'an and Sunnah with depth, discipline, and devotion.",
     "ctaApply": "Apply for Admission",
-    "ctaDepartments": "View Departments",
-    "scaffoldNotice": "Phase 3 scaffold — navigable trilingual shell. Sections arrive in later phases."
+    "ctaDepartments": "View Departments"
+  },
+  "sections": {
+    "stats": { "title": "A Tradition of Excellence" },
+    "departments": {
+      "eyebrow": "Academic Tracks",
+      "title": "Our Departments",
+      "description": "Three complementary paths of sacred and worldly learning."
+    },
+    "faculty": {
+      "eyebrow": "Our Scholars",
+      "title": "Distinguished Faculty",
+      "description": "Experienced scholars guiding the next generation."
+    },
+    "admission": {
+      "eyebrow": "Join Our Academic Journey",
+      "title": "Admission",
+      "description": "Everything you need to begin — requirements, dates, and fees.",
+      "requirements": "Requirements",
+      "requirementsBody": "Eligibility criteria and required documents for each track.",
+      "keyDates": "Key Dates",
+      "keyDatesBody": "Application windows, exams, and the academic calendar.",
+      "fees": "Fee Structure",
+      "feesBody": "Transparent admission and monthly tuition figures."
+    },
+    "publications": {
+      "eyebrow": "Scholarship",
+      "title": "Featured Collections",
+      "description": "Books, papers, and lectures from our faculty."
+    },
+    "gallery": {
+      "eyebrow": "Campus Life",
+      "title": "Gallery",
+      "description": "Glimpses of learning, worship, and community."
+    },
+    "activities": {
+      "eyebrow": "What's New",
+      "title": "Recent Activities",
+      "description": "Events, ceremonies, and announcements."
+    },
+    "downloads": {
+      "eyebrow": "Resources",
+      "title": "Institutional Downloads",
+      "description": "Prospectus, forms, syllabi, and results."
+    },
+    "donate": {
+      "eyebrow": "Support Our Mission",
+      "title": "Help Sustain Sacred Knowledge",
+      "description": "Your contribution educates students, supports scholars, and keeps the doors of learning open.",
+      "cta": "Donate Now"
+    },
+    "financial": {
+      "eyebrow": "Accountability",
+      "title": "Financial Transparency",
+      "description": "How every contribution is allocated."
+    }
   },
   "error": {
     "title": "Something went wrong",
