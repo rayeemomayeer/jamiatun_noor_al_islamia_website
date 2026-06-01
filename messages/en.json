@@ -98,6 +98,93 @@
       "description": "How every contribution is allocated."
     }
   },
+  "pages": {
+    "about": {
+      "eyebrow": "Our Story",
+      "title": "About Us",
+      "description": "A centre of traditional Islamic scholarship rooted in community and sincerity.",
+      "historyTitle": "Our History",
+      "historyBody": "Jamiatun Noor Al Islamia was established with a singular purpose: to provide a home for authentic Islamic learning in the heart of Dhaka. Founded by a group of dedicated scholars and community members, the institution has grown steadily, guided by the principle that sacred knowledge must remain accessible to every sincere seeker regardless of background or means.",
+      "missionTitle": "Our Mission",
+      "missionBody": "To nurture scholars of the Qur'an and Sunnah who are grounded in classical knowledge, strong in character, and equipped to serve their communities with wisdom and compassion.",
+      "visionTitle": "Our Vision",
+      "visionBody": "A society in which Islamic knowledge flourishes — where every family has access to a scholar, every student has a path, and the light of the Qur'an illuminates every home.",
+      "ctaAdmission": "Apply for Admission",
+      "ctaDonate": "Support Our Mission"
+    },
+    "departments": {
+      "eyebrow": "Academic Tracks",
+      "title": "Our Departments",
+      "description": "Three pathways of sacred learning, each with its own depth and purpose."
+    },
+    "faculty": {
+      "eyebrow": "Our Scholars",
+      "title": "Faculty",
+      "description": "Meet the scholars who guide our students."
+    },
+    "admission": {
+      "eyebrow": "Join Our Academic Journey",
+      "title": "Admission",
+      "description": "Everything you need to enrol — requirements, key dates, and fee structure.",
+      "tabRequirements": "Requirements",
+      "tabDates": "Key Dates",
+      "tabFees": "Fee Structure",
+      "reqTitle": "Eligibility & Documents",
+      "reqBody": "Applicants must have completed primary school (Class 5 or equivalent). Required documents: birth certificate, previous academic records, and a passport-size photograph. No prior Arabic knowledge is required for General Classes; basic Qur'an reading is recommended for Hifz.",
+      "datesTitle": "Academic Calendar 2025–26",
+      "datesItems": "Admission open: August 15 | Entrance assessment: September 1–7 | Results: September 10 | Classes begin: October 1 | Annual exams: May 2026 | Results & graduation: June 2026",
+      "applyTitle": "Ready to Apply?",
+      "applyBody": "Complete the online admission enquiry form. Our team will contact you within 48 hours to schedule an assessment.",
+      "applyBtn": "Apply via Google Form",
+      "applyNote": "Opens in a new tab. No login required."
+    },
+    "publications": {
+      "eyebrow": "Scholarship",
+      "title": "Publications",
+      "description": "Books, research papers, audio lectures, and academic reviews from our faculty.",
+      "filterAll": "All",
+      "filterCollection": "Collections",
+      "filterPaper": "Papers",
+      "filterAudio": "Audio",
+      "filterReview": "Reviews"
+    },
+    "gallery": {
+      "eyebrow": "Campus Life",
+      "title": "Gallery",
+      "description": "Photographs of learning, worship, and community at Jamiatun Noor Al Islamia."
+    },
+    "downloads": {
+      "eyebrow": "Resources",
+      "title": "Downloads",
+      "description": "Prospectus, forms, syllabi, results, and notices."
+    },
+    "activities": {
+      "eyebrow": "What's Happening",
+      "title": "Activities",
+      "description": "Events, ceremonies, and news from the institution."
+    },
+    "donate": {
+      "eyebrow": "Support Our Mission",
+      "title": "Help Sustain Sacred Knowledge",
+      "description": "Your contribution — however large or small — directly funds student scholarships, faculty salaries, and facility upkeep. Every rupee spent in the cause of sacred knowledge carries its reward.",
+      "impactTitle": "How Your Donation Helps",
+      "impactScholarships": "Scholarships for deserving students",
+      "impactFaculty": "Sustaining qualified scholars",
+      "impactFacilities": "Maintaining a safe learning environment",
+      "cta": "Donate Now",
+      "transparencyLink": "View financial transparency report",
+      "bankTitle": "Bank Transfer Details",
+      "bankNote": "Contact us at info@noor-islamia.edu.bd for bank account details or to discuss a larger contribution."
+    },
+    "contact": {
+      "eyebrow": "Get in Touch",
+      "title": "Contact Us",
+      "description": "We welcome enquiries from prospective students, families, and community members.",
+      "formTitle": "Send a Message",
+      "infoTitle": "Visit or Call",
+      "hours": "Saturday–Thursday, 9am–5pm"
+    }
+  },
   "error": {
     "title": "Something went wrong",
     "description": "An unexpected error occurred. Please try again.",

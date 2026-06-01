@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss';
 import tailwindcssAnimate from 'tailwindcss-animate';
+import typography from '@tailwindcss/typography';
 
 /**
  * Design system tokens — BLUEPRINT §7.
@@ -139,7 +140,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [tailwindcssAnimate],
+  plugins: [tailwindcssAnimate, typography],
 };
 
 export default config;
