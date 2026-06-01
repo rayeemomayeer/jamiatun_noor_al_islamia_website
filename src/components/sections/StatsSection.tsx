@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 import type { Locale } from '@/constants/i18n';
@@ -18,23 +19,23 @@ export function StatsSection({ locale }: { locale: Locale }) {
         <dl className="grid grid-cols-2 gap-8 lg:grid-cols-4">
           {STATS.map((stat, i) => (
             <Reveal key={stat.id} delay={i * 0.1} as="div">
-              <div className="flex flex-col items-center text-center">
-                <div className="relative grid place-items-center">
-                  <svg
-                    viewBox="0 0 100 100"
-                    className="size-24 fill-accent/10 stroke-accent"
-                    strokeWidth={1.5}
-                    aria-hidden
-                  >
-                    <path d="M50 4l9 22 24-8-8 24 22 9-22 9 8 24-24-8-9 22-9-22-24 8 8-24-22-9 22-9-8-24 24 8z" />
-                  </svg>
-                  <dd className="absolute font-display text-h2 font-bold text-primary">
+              <div className="relative mx-auto flex aspect-[1052/1024] w-full max-w-[220px] flex-col items-center justify-center p-4 text-center">
+                <Image
+                  src="/images/stats_frame.svg"
+                  alt=""
+                  width={1052}
+                  height={1024}
+                  className="pointer-events-none absolute inset-0 h-full w-full select-none object-contain"
+                  aria-hidden
+                />
+                <div className="relative z-10 flex flex-col items-center justify-center p-2">
+                  <dd className="font-display text-h2 font-bold text-primary sm:text-h1">
                     <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                   </dd>
+                  <dt className="mt-1 font-body text-small font-semibold text-muted-foreground sm:text-body">
+                    {pick(stat.label, locale)}
+                  </dt>
                 </div>
-                <dt className="mt-3 text-body font-semibold text-muted-foreground">
-                  {pick(stat.label, locale)}
-                </dt>
               </div>
             </Reveal>
           ))}
