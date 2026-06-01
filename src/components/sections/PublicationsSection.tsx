@@ -3,7 +3,9 @@ import { ArrowRight } from 'lucide-react';
 
 import type { Locale } from '@/constants/i18n';
 import { Container } from '@/components/layout/Container';
+import { CardMotionWrapper } from '@/components/shared/CardMotionWrapper';
 import { PublicationCard } from '@/components/shared/PublicationCard';
+import { Reveal } from '@/components/shared/Reveal';
 import { SectionHeader } from '@/components/shared/SectionHeader';
 import { PUBLICATIONS } from '@/data/publications';
 import { Link } from '@/i18n/navigation';
@@ -15,14 +17,20 @@ export function PublicationsSection({ locale }: { locale: Locale }) {
   return (
     <section className="py-20">
       <Container>
-        <SectionHeader
-          eyebrow={t('eyebrow')}
-          title={t('title')}
-          description={t('description')}
-        />
+        <Reveal>
+          <SectionHeader
+            eyebrow={t('eyebrow')}
+            title={t('title')}
+            description={t('description')}
+          />
+        </Reveal>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {PUBLICATIONS.map((pub) => (
-            <PublicationCard key={pub.slug} publication={pub} locale={locale} />
+          {PUBLICATIONS.map((pub, i) => (
+            <Reveal key={pub.slug} delay={i * 0.08}>
+              <CardMotionWrapper>
+                <PublicationCard publication={pub} locale={locale} />
+              </CardMotionWrapper>
+            </Reveal>
           ))}
         </div>
         <div className="mt-10 text-center">

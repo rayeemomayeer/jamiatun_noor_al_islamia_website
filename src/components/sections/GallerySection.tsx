@@ -5,12 +5,13 @@ import type { Locale } from '@/constants/i18n';
 import { Container } from '@/components/layout/Container';
 import { archMaskStyle } from '@/components/shared/ArchCard';
 import { Placeholder } from '@/components/shared/Placeholder';
+import { Reveal, RevealList } from '@/components/shared/Reveal';
 import { SectionHeader } from '@/components/shared/SectionHeader';
 import { GALLERY } from '@/data/gallery';
 import { Link } from '@/i18n/navigation';
 import { pick } from '@/utils/localize';
 
-/** Gallery preview — arch-framed thumbnails; lightbox arrives in Phase 5. */
+/** Gallery preview — staggered arch thumbnails (BLUEPRINT §8.4). Lightbox Phase 5. */
 export function GallerySection({ locale }: { locale: Locale }) {
   const t = useTranslations('sections.gallery');
   const tc = useTranslations('common');
@@ -18,12 +19,17 @@ export function GallerySection({ locale }: { locale: Locale }) {
   return (
     <section className="bg-parchment-deep py-20">
       <Container>
-        <SectionHeader
-          eyebrow={t('eyebrow')}
-          title={t('title')}
-          description={t('description')}
-        />
-        <ul className="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3">
+        <Reveal>
+          <SectionHeader
+            eyebrow={t('eyebrow')}
+            title={t('title')}
+            description={t('description')}
+          />
+        </Reveal>
+        <RevealList
+          className="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3"
+          stagger={0.08}
+        >
           {GALLERY.map((image) => (
             <li key={image.id} style={archMaskStyle} className="aspect-[3/4]">
               <Placeholder
@@ -32,7 +38,7 @@ export function GallerySection({ locale }: { locale: Locale }) {
               />
             </li>
           ))}
-        </ul>
+        </RevealList>
         <div className="mt-10 text-center">
           <Link
             href="/gallery"

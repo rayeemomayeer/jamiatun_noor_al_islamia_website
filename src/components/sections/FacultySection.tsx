@@ -3,7 +3,9 @@ import { ArrowRight } from 'lucide-react';
 
 import type { Locale } from '@/constants/i18n';
 import { Container } from '@/components/layout/Container';
+import { CardMotionWrapper } from '@/components/shared/CardMotionWrapper';
 import { FacultyCard } from '@/components/shared/FacultyCard';
+import { Reveal } from '@/components/shared/Reveal';
 import { SectionHeader } from '@/components/shared/SectionHeader';
 import { FACULTY } from '@/data/faculty';
 import { Link } from '@/i18n/navigation';
@@ -17,14 +19,20 @@ export function FacultySection({ locale }: { locale: Locale }) {
   return (
     <section className="bg-parchment-deep py-20">
       <Container>
-        <SectionHeader
-          eyebrow={t('eyebrow')}
-          title={t('title')}
-          description={t('description')}
-        />
+        <Reveal>
+          <SectionHeader
+            eyebrow={t('eyebrow')}
+            title={t('title')}
+            description={t('description')}
+          />
+        </Reveal>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {faculty.map((member) => (
-            <FacultyCard key={member.slug} faculty={member} locale={locale} />
+          {faculty.map((member, i) => (
+            <Reveal key={member.slug} delay={i * 0.08}>
+              <CardMotionWrapper>
+                <FacultyCard faculty={member} locale={locale} />
+              </CardMotionWrapper>
+            </Reveal>
           ))}
         </div>
         <div className="mt-10 text-center">

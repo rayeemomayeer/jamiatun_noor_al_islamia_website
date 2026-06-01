@@ -4,6 +4,8 @@ import { ArrowRight } from 'lucide-react';
 import type { Locale } from '@/constants/i18n';
 import { Container } from '@/components/layout/Container';
 import { ActivityCard } from '@/components/shared/ActivityCard';
+import { CardMotionWrapper } from '@/components/shared/CardMotionWrapper';
+import { Reveal } from '@/components/shared/Reveal';
 import { SectionHeader } from '@/components/shared/SectionHeader';
 import { ACTIVITIES } from '@/data/activities';
 import { Link } from '@/i18n/navigation';
@@ -19,18 +21,20 @@ export function ActivitiesSection({ locale }: { locale: Locale }) {
   return (
     <section className="py-20">
       <Container>
-        <SectionHeader
-          eyebrow={t('eyebrow')}
-          title={t('title')}
-          description={t('description')}
-        />
+        <Reveal>
+          <SectionHeader
+            eyebrow={t('eyebrow')}
+            title={t('title')}
+            description={t('description')}
+          />
+        </Reveal>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {activities.map((activity) => (
-            <ActivityCard
-              key={activity.slug}
-              activity={activity}
-              locale={locale}
-            />
+          {activities.map((activity, i) => (
+            <Reveal key={activity.slug} delay={i * 0.1}>
+              <CardMotionWrapper>
+                <ActivityCard activity={activity} locale={locale} />
+              </CardMotionWrapper>
+            </Reveal>
           ))}
         </div>
         <div className="mt-10 text-center">
