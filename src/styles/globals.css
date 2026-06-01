@@ -98,3 +98,16 @@
 }
 
 /* Mihrab arch silhouette lives in ArchCard (stretchable SVG mask). */
+
+/* Hero background image fade — CSS-only so GSAP clearProps never touches it. */
+@keyframes hero-bg-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.hero-bg-fade {
+  animation: hero-bg-fade 0.8s ease-out both;
+}

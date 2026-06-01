@@ -3,6 +3,7 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import { useRef } from 'react';
 
 import { Container } from '@/components/layout/Container';
@@ -11,9 +12,9 @@ import { Divider } from '@/components/shared/Divider';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 /**
- * Hero with GSAP entrance timeline (BLUEPRINT §8.4).
- * Content is rendered in the HTML — animation enhances, never gates.
- * Reduced-motion: all elements visible immediately, no timeline.
+ * Hero with full-bleed background image + GSAP entrance timeline (BLUEPRINT §8.4).
+ * Background: design/hero/hero_background_image.png — parchment arabesque + mihrab arch.
+ * Content is centered in the arch's white space. Image served as AVIF/WebP via next/image.
  */
 export function HeroSection() {
   const t = useTranslations('home');
@@ -24,8 +25,10 @@ export function HeroSection() {
     () => {
       if (reduced) return;
 
+      // Do NOT animate .hero-bg — GSAP clearProps strips next/image fill's position:absolute.
+      // Background fades in via CSS animation-fade-in instead.
       const tl = gsap.timeline({
-        defaults: { ease: 'power3.out', clearProps: 'all' },
+        defaults: { ease: 'power3.out', clearProps: 'opacity,transform' },
       });
 
       tl.from('.hero-eyebrow', { opacity: 0, y: 12, duration: 0.5 })
@@ -33,22 +36,12 @@ export function HeroSection() {
         .from('.hero-subtitle', { opacity: 0, y: 20, duration: 0.5 }, '-=0.3')
         .from(
           '.hero-ctas > *',
-          {
-            opacity: 0,
-            y: 16,
-            duration: 0.4,
-            stagger: 0.1,
-          },
+          { opacity: 0, y: 16, duration: 0.4, stagger: 0.1 },
           '-=0.25'
         )
         .from(
           '.hero-divider',
-          {
-            opacity: 0,
-            scaleX: 0,
-            transformOrigin: '50% 50%',
-            duration: 0.6,
-          },
+          { opacity: 0, scaleX: 0, transformOrigin: '50% 50%', duration: 0.6 },
           '-=0.2'
         );
     },
@@ -56,22 +49,29 @@ export function HeroSection() {
   );
 
   return (
-    <section ref={containerRef} className="relative overflow-hidden">
-      {/* Decorative ornamental backdrop */}
+    /* Explicit h-[90vh] so next/image fill has a definite parent height (BLUEPRINT §10.1). */
+    <section
+      ref={containerRef}
+      className="relative h-[90vh] min-h-[600px] overflow-hidden"
+    >
+      {/* Background image — parchment arabesque + mihrab arch */}
+      <Image
+        src="/images/hero-bg.png"
+        alt=""
+        fill
+        priority
+        className="hero-bg-fade object-cover object-top"
+        sizes="100vw"
+        quality={85}
+      />
+
+      {/* Subtle overlay so text reads cleanly over the pattern */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,theme(colors.parchment.deep),theme(colors.background))]"
+        className="pointer-events-none absolute inset-0 bg-background/20"
       />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 6l5 11 12-4-4 12 11 5-11 5 4 12-12-4-5 11-5-11-12 4 4-12-11-5 11-5-4-12 12 4z' fill='none' stroke='%230F5A34' stroke-width='1'/%3E%3C/svg%3E\")",
-          backgroundSize: '80px 80px',
-        }}
-      />
-      <Container className="relative flex min-h-[88vh] flex-col items-center justify-center gap-6 py-24 text-center">
+
+      <Container className="relative z-10 flex h-full flex-col items-center justify-center gap-6 py-24 text-center">
         <p className="hero-eyebrow text-eyebrow uppercase text-accent">
           {t('eyebrow')}
         </p>
