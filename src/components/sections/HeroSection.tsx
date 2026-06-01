@@ -71,7 +71,7 @@ export function HeroSection() {
         className="pointer-events-none absolute inset-0 bg-background/20"
       />
 
-      <Container className="relative z-10 flex h-full flex-col items-center justify-center gap-6 py-24 text-center">
+      <Container className="relative z-10 mt-28 flex h-full flex-col items-center justify-center gap-6 py-24 text-center">
         <p className="hero-eyebrow text-eyebrow uppercase text-accent">
           {t('eyebrow')}
         </p>
@@ -82,10 +82,20 @@ export function HeroSection() {
           {t('subtitle')}
         </p>
         <div className="hero-ctas mt-4 flex flex-col items-center gap-4 sm:flex-row">
-          <CTAButton href="/admission" variant="primary" size="lg">
+          <CTAButton
+            href="/admission"
+            variant="primary"
+            className="text-secondary"
+            size="lg"
+          >
             {t('ctaApply')}
           </CTAButton>
-          <CTAButton href="/departments" variant="secondary" size="lg">
+          <CTAButton
+            href="/departments"
+            variant="secondary"
+            className="text-primary-dark"
+            size="lg"
+          >
             {t('ctaDepartments')}
           </CTAButton>
         </div>
