@@ -26,8 +26,19 @@ export function Footer() {
   const t = useTranslations();
 
   return (
-    <footer className="mt-24 bg-primary-darkest text-primary-foreground">
-      <Container className="py-16">
+    <footer className="relative mt-24 bg-primary-darkest text-primary-foreground">
+      {/* Top Border Line Pattern Overlay */}
+      <div
+        className="pointer-events-none absolute left-0 right-0 top-0 h-6 select-none opacity-90"
+        style={{
+          backgroundImage: 'url(/images/borderline_image.png)',
+          backgroundRepeat: 'repeat-x',
+          backgroundPosition: 'top center',
+          backgroundSize: 'auto 100%',
+        }}
+      />
+
+      <Container className="py-16 pt-20">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="flex flex-col gap-4 lg:col-span-1">
