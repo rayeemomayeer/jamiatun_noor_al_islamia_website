@@ -45,9 +45,10 @@ export function Footer() {
             <Image
               src="/logo.svg"
               alt={t('meta.title')}
-              width={140}
-              height={44}
-              className="h-11 w-auto brightness-0 invert"
+              width={10}
+              height={10}
+              priority
+              className="h-10 w-auto lg:h-14"
             />
             <p className="text-small text-primary-foreground/80">
               {t('footer.tagline')}

@@ -68,7 +68,7 @@ export function HeroSection() {
       {/* Subtle overlay so text reads cleanly over the pattern */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-background/20"
+        className="pointer-events-none absolute inset-0 bg-background/50"
       />
 
       <Container className="relative z-10 mt-28 flex h-full flex-col items-center justify-center gap-6 py-24 text-center">
