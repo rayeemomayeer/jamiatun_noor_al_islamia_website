@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "title": "Jamiatun Noor Al Islamia",
+    "description": "A premier Islamic institution dedicated to scholarship, character, and service."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "departments": "Departments",
+    "admission": "Admission",
+    "donate": "Donate"
+  },
+  "home": {
+    "eyebrow": "Established in pursuit of sacred knowledge",
+    "title": "Jamiatun Noor Al Islamia",
+    "subtitle": "Nurturing scholars of the Qur'an and Sunnah with depth, discipline, and devotion.",
+    "ctaApply": "Apply for Admission",
+    "ctaDepartments": "View Departments",
+    "scaffoldNotice": "Phase 1 scaffold — trilingual routing live. Sections arrive in later phases."
+  }
+}
