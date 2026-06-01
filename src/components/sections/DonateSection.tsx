@@ -10,6 +10,16 @@ export function DonateSection() {
 
   return (
     <section className="relative overflow-hidden bg-primary py-20 text-primary-foreground">
+      {/* Top Border Line Pattern Overlay */}
+      <div
+        className="pointer-events-none absolute left-0 right-0 top-0 h-6 select-none opacity-90"
+        style={{
+          backgroundImage: 'url(/images/borderline_image.png)',
+          backgroundRepeat: 'repeat-x',
+          backgroundPosition: 'top center',
+          backgroundSize: 'auto 100%',
+        }}
+      />
       <Corner className="start-0 top-0" />
       <Corner className="end-0 top-0 -scale-x-100" />
       <Corner className="bottom-0 start-0 -scale-y-100" />
