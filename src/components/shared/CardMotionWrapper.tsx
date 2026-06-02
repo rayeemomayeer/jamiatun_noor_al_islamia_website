@@ -2,21 +2,27 @@
 
 import { motion } from 'framer-motion';
 
-import { cardInteraction } from '@/animations/variants';
+import { cardInteraction, cardInteractionBoxed } from '@/animations/variants';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
-/**
- * Framer Motion hover/tap wrapper for card components (BLUEPRINT §8.4).
- * Server-rendered card content is passed as children — no RSC boundary violation.
- */
+interface CardMotionWrapperProps {
+  children: React.ReactNode;
+  className?: string;
+  /**
+   * "arch" — no box-shadow (box-shadow ignores CSS masks, bleeds outside arch shape).
+   * "boxed" — includes box-shadow for rectangular cards.
+   * Default: "boxed".
+   */
+  variant?: 'arch' | 'boxed';
+}
+
 export function CardMotionWrapper({
   children,
   className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
+  variant = 'boxed',
+}: CardMotionWrapperProps) {
   const reduced = useReducedMotion();
+  const variants = variant === 'arch' ? cardInteraction : cardInteractionBoxed;
 
   if (reduced) {
     return <div className={className}>{children}</div>;
@@ -28,7 +34,7 @@ export function CardMotionWrapper({
       initial="rest"
       whileHover="hover"
       whileTap="tap"
-      variants={cardInteraction}
+      variants={variants}
     >
       {children}
     </motion.div>

@@ -29,7 +29,8 @@ export function DepartmentsSection({ locale }: { locale: Locale }) {
         <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {DEPARTMENTS.map((dept, i) => (
             <Reveal key={dept.slug} delay={i * 0.12}>
-              <CardMotionWrapper>
+              {/* variant="arch": filter:drop-shadow (respects SVG mask), no box-shadow */}
+              <CardMotionWrapper variant="arch">
                 <ArchCard
                   title={pick(dept.title, locale)}
                   description={pick(dept.description, locale)}
