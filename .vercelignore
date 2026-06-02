@@ -1,0 +1,44 @@
+# Dependencies
+node_modules
+**/node_modules
+
+# Turbo cache (if using Turborepo)
+.turbo
+**/.turbo
+
+# Next.js cache and build outputs
+.next
+**/.next
+out
+**/out
+
+# Cache directories
+cache
+**/.cache
+
+# Environment files (inject these via Vercel Dashboard instead)
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# OS files
+.DS_Store
+**/.DS_Store
+Thumbs.db
+
+# IDE configurations
+.vscode
+.idea
+
+# Temporary files
+*.log
+*.tmp
+*.temp
+
+# Git files
+.git
+.gitignore
+
+**/design

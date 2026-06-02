@@ -44,7 +44,7 @@ export function AdmissionSection() {
             </Reveal>
           ))}
         </div>
-        <div className="mt-10 text-center">
+        <div className="mt-10 text-center text-white">
           <CTAButton href="/admission" variant="primary" size="lg">
             {tc('apply')}
           </CTAButton>
