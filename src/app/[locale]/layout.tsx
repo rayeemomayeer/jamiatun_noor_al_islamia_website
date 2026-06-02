@@ -12,6 +12,12 @@ import { Navbar } from '@/components/layout/Navbar';
 import { LanguageWelcome } from '@/components/shared/LanguageWelcome';
 import { isLocale, LOCALE_DIRECTION, type Locale } from '@/constants/i18n';
 import { routing } from '@/i18n/routing';
+import {
+  buildMetadata,
+  jsonLdString,
+  organizationJsonLd,
+  SITE_URL,
+} from '@/lib/seo';
 import { fontVariables } from '@/styles/fonts';
 
 import '@/styles/globals.css';
@@ -27,13 +33,19 @@ export async function generateMetadata({
 }: LayoutParams): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'meta' });
+  const l = isLocale(locale) ? (locale as Locale) : 'en';
 
   return {
+    ...buildMetadata({
+      locale: l,
+      title: t('title'),
+      description: t('description'),
+    }),
+    metadataBase: new URL(SITE_URL),
     title: {
       default: t('title'),
       template: `%s · ${t('title')}`,
     },
-    description: t('description'),
   };
 }
 
@@ -47,16 +59,23 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  // Enable static rendering for this locale.
   setRequestLocale(locale);
 
   const messages = await getMessages();
   const dir = LOCALE_DIRECTION[locale as Locale];
-
   const t = await getTranslations({ locale, namespace: 'a11y' });
 
   return (
     <html lang={locale} dir={dir} className={fontVariables}>
+      <head>
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: jsonLdString(organizationJsonLd()),
+          }}
+        />
+      </head>
       <body className="flex min-h-screen flex-col font-body antialiased">
         <NextIntlClientProvider messages={messages}>
           <a

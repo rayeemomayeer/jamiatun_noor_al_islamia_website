@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
+import type { Locale } from '@/constants/i18n';
 import { Container } from '@/components/layout/Container';
+import { buildMetadata } from '@/lib/seo';
 import { CTAButton } from '@/components/shared/CTAButton';
 import { Divider } from '@/components/shared/Divider';
 import { SectionHeader } from '@/components/shared/SectionHeader';
@@ -17,7 +19,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'pages.about' });
-  return { title: t('title') };
+  return buildMetadata({
+    locale: locale as Locale,
+    title: t('title'),
+    description: t('description'),
+    path: '/about',
+  });
 }
 
 export default async function AboutPage({ params }: Params) {

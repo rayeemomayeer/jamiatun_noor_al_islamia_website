@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Mail, MapPin, Phone } from 'lucide-react';
 
+import type { Locale } from '@/constants/i18n';
+import { buildMetadata } from '@/lib/seo';
 import { Container } from '@/components/layout/Container';
 import { ContactForm } from '@/components/shared/ContactForm';
 import { SectionHeader } from '@/components/shared/SectionHeader';
@@ -17,7 +19,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'pages.contact' });
-  return { title: t('title') };
+  return buildMetadata({
+    locale: locale as Locale,
+    title: t('title'),
+    description: t('description'),
+    path: '/contact',
+  });
 }
 
 export default async function ContactPage({ params }: Params) {

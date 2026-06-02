@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import type { Locale } from '@/constants/i18n';
+import { buildMetadata } from '@/lib/seo';
 import { Container } from '@/components/layout/Container';
 import { DownloadCard } from '@/components/shared/DownloadCard';
 import { SectionHeader } from '@/components/shared/SectionHeader';
@@ -18,7 +19,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'pages.downloads' });
-  return { title: t('title') };
+  return buildMetadata({
+    locale: locale as Locale,
+    title: t('title'),
+    description: t('description'),
+    path: '/downloads',
+  });
 }
 
 export default async function DownloadsPage({ params }: Params) {

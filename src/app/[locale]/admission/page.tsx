@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import type { Locale } from '@/constants/i18n';
+import { buildMetadata } from '@/lib/seo';
 import { Container } from '@/components/layout/Container';
 import { FeeTable } from '@/components/shared/FeeTable';
 import { IslamicFrame } from '@/components/shared/IslamicFrame';
@@ -19,7 +20,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'pages.admission' });
-  return { title: t('title') };
+  return buildMetadata({
+    locale: locale as Locale,
+    title: t('title'),
+    description: t('description'),
+    path: '/admission',
+  });
 }
 
 export default async function AdmissionPage({ params }: Params) {

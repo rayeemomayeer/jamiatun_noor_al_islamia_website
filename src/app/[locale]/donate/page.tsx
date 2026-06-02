@@ -7,6 +7,7 @@ import { Divider } from '@/components/shared/Divider';
 import { FinancialTransparency } from '@/components/sections/FinancialTransparency';
 import { IslamicFrame } from '@/components/shared/IslamicFrame';
 import type { Locale } from '@/constants/i18n';
+import { buildMetadata } from '@/lib/seo';
 import { SITE } from '@/data/site';
 import { routing } from '@/i18n/routing';
 
@@ -19,7 +20,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'pages.donate' });
-  return { title: t('title') };
+  return buildMetadata({
+    locale: locale as Locale,
+    title: t('title'),
+    description: t('description'),
+    path: '/donate',
+  });
 }
 
 export default async function DonatePage({ params }: Params) {

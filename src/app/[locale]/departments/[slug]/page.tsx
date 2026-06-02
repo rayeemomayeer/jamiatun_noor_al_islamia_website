@@ -5,6 +5,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import { Download } from 'lucide-react';
 
 import type { Locale } from '@/constants/i18n';
+import { buildMetadata } from '@/lib/seo';
 import { Container } from '@/components/layout/Container';
 import { CTAButton } from '@/components/shared/CTAButton';
 import { Divider } from '@/components/shared/Divider';
@@ -28,7 +29,11 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { locale, slug } = await params;
   const dept = DEPARTMENTS.find((d) => d.slug === slug);
   if (!dept) return {};
-  return { title: pick(dept.title, locale as Locale) };
+  return buildMetadata({
+    locale: locale as Locale,
+    title: pick(dept.title, locale as Locale),
+    path: `/departments/${slug}`,
+  });
 }
 
 export default async function DepartmentDetailPage({ params }: Params) {

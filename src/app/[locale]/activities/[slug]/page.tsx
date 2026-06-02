@@ -4,6 +4,13 @@ import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 
 import type { Locale } from '@/constants/i18n';
+import {
+  articleJsonLd,
+  breadcrumbJsonLd,
+  buildMetadata,
+  jsonLdString,
+  SITE_URL,
+} from '@/lib/seo';
 import { Container } from '@/components/layout/Container';
 import { Divider } from '@/components/shared/Divider';
 import { LocalizedDate } from '@/components/shared/LocalizedDate';
@@ -26,7 +33,11 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { locale, slug } = await params;
   const mdx = loadMdxFile('activities', slug, locale as Locale);
-  return { title: mdx?.title ?? slug };
+  return buildMetadata({
+    locale: locale as Locale,
+    title: mdx?.title ?? slug,
+    path: `/activities/${slug}`,
+  });
 }
 
 export default async function ActivityDetailPage({ params }: Params) {
@@ -39,8 +50,38 @@ export default async function ActivityDetailPage({ params }: Params) {
   const activity = ACTIVITIES.find((a) => a.slug === slug);
   const navT = await getTranslations({ locale, namespace: 'pages.activities' });
 
+  const pageUrl = `${SITE_URL}/${locale}/activities/${slug}`;
+  const activitiesUrl = `${SITE_URL}/${locale}/activities`;
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: jsonLdString(
+            articleJsonLd({
+              title: mdx.title,
+              description: mdx.excerpt,
+              url: pageUrl,
+              datePublished:
+                mdx.date ?? new Date().toISOString().split('T')[0]!,
+            })
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: jsonLdString(
+            breadcrumbJsonLd([
+              { name: navT('title'), url: activitiesUrl },
+              { name: mdx.title, url: pageUrl },
+            ])
+          ),
+        }}
+      />
       {/* Hero placeholder image */}
       <Placeholder label={mdx.title} className="aspect-[21/9] w-full" />
 
