@@ -9,6 +9,7 @@ import { notFound } from 'next/navigation';
 
 import { Footer } from '@/components/layout/Footer';
 import { Navbar } from '@/components/layout/Navbar';
+import { LanguageWelcome } from '@/components/shared/LanguageWelcome';
 import { isLocale, LOCALE_DIRECTION, type Locale } from '@/constants/i18n';
 import { routing } from '@/i18n/routing';
 import { fontVariables } from '@/styles/fonts';
@@ -69,6 +70,7 @@ export default async function LocaleLayout({
             {children}
           </main>
           <Footer />
+          <LanguageWelcome currentLocale={locale as Locale} />
         </NextIntlClientProvider>
       </body>
     </html>
